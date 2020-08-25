@@ -25,6 +25,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $name = time();
+        $schedule->command('deleteUnit')->everyMinute()
+        ->emailOutputTo('mengheangweb@gmail.com');
+        //->sendOutputTo(public_path("/reports/{$name}.txt"));
     }
 
     /**

@@ -16,7 +16,7 @@ class LoginPeriod
      */
     public function handle($request, Closure $next)
     {
-        $date = Carbon::parse('2020-08-02');
+        $date = Carbon::parse('2020-10-18');
 
         if(now() > $date)
         {

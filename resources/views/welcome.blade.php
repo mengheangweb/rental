@@ -56,6 +56,8 @@
 @section('content')
         <div class="flex-center position-ref full-height">
             <div class="content">
+                <h5>@lang('home.welcome',['name' => Auth::user()->name ])</h5>
+                <p> {{ trans_choice('home.apples',2) }}</p>
                 <div class="title m-b-md">
                     Laravel 7
                 </div>

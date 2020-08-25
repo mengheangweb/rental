@@ -17,6 +17,9 @@
               <li class="nav-item">
                   <a class="nav-link" href="{{ url('/unit') }}">Unit</a>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/rent') }}">Rent</a>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Setting
@@ -29,6 +32,20 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{  strtoupper(session('locale')) }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @if(session('locale') == 'en')
+                            <a class="dropdown-item" href="/setting/locale/kh">KH</a>
+                        @elseif(session('locale') == 'kh')
+                            <a class="dropdown-item" href="/setting/locale/en">EN</a>
+                        @endif
+                    </div>
+                  </li>
+
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -46,11 +63,14 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('notification') }}">Notifications</a>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
+
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
