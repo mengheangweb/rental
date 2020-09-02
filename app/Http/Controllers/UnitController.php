@@ -18,6 +18,18 @@ class UnitController extends Controller
       //  $this->middleware('loginPeroid');
     }
 
+    public function list()
+    {
+        // dd(\App::getLocale(), session('locale'));
+        $units = Unit::orderBy('id','desc')->simplePaginate(2);
+        $units_deleted = Unit::onlyTrashed()->get();
+
+        // $units = $units->where('size','l')->all();
+
+        return response()->json(['units' => $units, 'units_deleted' => $units_deleted]);
+
+    }
+
     public function index()
     {
         // dd(\App::getLocale(), session('locale'));

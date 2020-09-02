@@ -28,9 +28,6 @@ class Invoice extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.invoice')->attach('/test.pdf', [
-            'as' => 'name.pdf',
-            'mime' => 'application/pdf',
-        ]);;
+        return $this->markdown('emails.invoice');
     }
 }

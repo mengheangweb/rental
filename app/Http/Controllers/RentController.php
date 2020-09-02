@@ -9,6 +9,7 @@ use App\Mail\Invoice;
 use App\Notifications\Receipt;
 use Mail;
 use Illuminate\Http\Request;
+use App\Jobs\ProcessReceipt;
 
 class RentController extends Controller
 {
@@ -63,9 +64,10 @@ class RentController extends Controller
 
         $user = User::find($request->user);
 
-        $user->notify(new Receipt($renting));
+        // $user->notify(new Receipt($renting));
 
         // Mail::to($user)->send(new Invoice());
+        ProcessReceipt::dispatch($user)->delay(now()->addMinutes(10));
 
         return redirect('/rent')->with('message','Rent Created');
     }
